@@ -1,11 +1,115 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import Modal from 'react-modal';
+
+const Table = ({ data, itemsPerPage }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  return (
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            {/* Add more table headers as needed */}
+          </tr>
+        </thead>
+        <tbody>
+          {currentItems.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.title}</td>
+              {/* Add more table data cells as needed */}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <ul>
+        {data.map((item, index) => (
+          <li key={index}>
+            <button onClick={() => paginate(index + 1)}>{index + 1}</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const videoRef = useRef(null);
+
+  const customStyles = {
+    overlay: {
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      zIndex: '1'
+    },
+    content: {
+      width: '50%',
+      height: '50%',
+      margin: 'auto',
+      border: '1px solid #ccc',
+      borderRadius: '5px',
+      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.5)',
+      padding: '20px'
+    }
+  };
+
+  
+  Modal.setAppElement('#root'); // 혹은 다른 요소 선택자
+
+const Table = ({ data, itemsPerPage }) => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  return (
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            {/* Add more table headers as needed */}
+          </tr>
+        </thead>
+        <tbody>
+          {currentItems.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.title}</td>
+              {/* Add more table data cells as needed */}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <ul>
+        {data.map((item, index) => (
+          <li key={index}>
+            <button onClick={() => paginate(index + 1)}>{index + 1}</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 
   useEffect(() => {
     // 컴포넌트가 마운트된 후에 실행되는 부분
@@ -28,17 +132,6 @@ function App() {
     setPosts(response.data);
   };
 
-  //   const handleSubmit = async (e) => {
-  //     e.preventDefault();
-  //     console.log(title);
-  //     console.log(content);
-  //     await axios
-  //       .post("http://localhost:5000/posts", { title, content })
-  //       .catch((error) => console.log(error));
-  //     setTitle("");
-  //     setContent("");
-  //     fetchPosts();
-  //   };
 
   const handleSubmit = async () => {
     try {
@@ -86,6 +179,26 @@ function App() {
       );
   };
 
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+  const [tableModalIsOpen, setTableIsOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
+  function tableOpenModal(post) {
+    setSelectedPost(post);
+    setTableIsOpen(true);
+  }
+
+  function tableCloseModal() {
+    setTableIsOpen(false);
+  }
+
   //   const [likes, setLikes] = useState(0);
 
   //   const increaseLikes = () => {
@@ -120,8 +233,6 @@ function App() {
       {/* Banner */}
       <section id="banner">
         <div className="inner">
-          <h1>BNK AI LAB</h1>
-          <p>"AI will not replace you, A person using AI will"</p>
         </div>
         <video ref={videoRef} src="images/banner.mp4"></video>
       </section>
@@ -294,27 +405,76 @@ function App() {
                 <table
                   summary="This table shows how to create responsive tables using Datatables' extended functionality"
                   className="table table-bordered table-hover dt-responsive"
+                  style={{textAlign: "center"}}
                 >
                   <caption className="text-center">
                     최신 AI 기술이 반영된 세미나 자료를 소개하는 게시판입니다
                   </caption>
                   <caption style={{ textAlign: "right" }}>
-                    <button className="button small">작성</button>
+                  <div className="modal">
+                    <button  onClick={openModal} className="button small">작성</button>
+                    
+                      <Modal
+                      isOpen={modalIsOpen}
+                      onRequestClose={closeModal}
+                      style={customStyles}
+                      contentLabel="Example Modal"
+                    >
+                      <form onSubmit={handleSubmit}>
+                      <input
+                        type="text"
+                        placeholder="제목"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                      />
+                      <textarea
+                        placeholder="내용"
+                        value={content}
+                        onChange={(e) => setContent(e.target.value)}
+                      ></textarea>
+                      <button type="submit">게시글 작성</button>
+                      <button onClick={closeModal}>닫기</button>
+                    </form>
+                      
+                    </Modal>
+                    </div>
                   </caption>
-                  <thead>
-                    <tr>
+                  <thead style={{textAlign: "center"}}>
+                    <tr >
                       <th>번호</th>
-                      <th>제목</th>
+                      <th 
+                      style={{width: "60%"}}
+                      >제목</th>
                       <th>등록자</th>
                       <th>등록일</th>
                       <th>조회수</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody className="modal">
+                  
+                      
+                    
                     {posts.map((post) => (
-                      <tr>
+                      <tr key = {post.id} onClick={() => tableOpenModal(post)}>
+                       <Modal
+                      isOpen={tableModalIsOpen}
+                      onRequestClose={tableCloseModal}
+                      style={customStyles}
+                      contentLabel="table Modal"
+                    >
+                      {selectedPost && (
+                        <div>
+                          <h2>테스트</h2>
+                          <p>{selectedPost.id}</p>
+                          <p>{selectedPost.title}</p>
+                          <p>{selectedPost.content}</p>
+                          <button onClick={tableCloseModal}>닫기</button>
+                        </div>
+  )}
+                        </Modal>
                         <td>{post.id}</td>
                         <td>{post.title}</td>
+                        
                         <td>41,803,125</td>
                         <td>31.3</td>
                         <td>
@@ -327,9 +487,14 @@ function App() {
                           >
                             삭제
                           </button>
+                          
                         </td>
+                        
                       </tr>
+                      
                     ))}
+                    
+
                   </tbody>
                   <tfoot>
                     <tr>
@@ -356,21 +521,8 @@ function App() {
               </div>
             </div>
           </div>
-
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="제목"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <textarea
-              placeholder="내용"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-            ></textarea>
-            <button type="submit">게시글 작성</button>
-          </form>
+ 
+      
 
           <p className="p">Demo by 디지털금융개발부</p>
         </div>
