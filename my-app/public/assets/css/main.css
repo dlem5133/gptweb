@@ -880,7 +880,7 @@ table td {
   padding: 0.75rem 0.75rem;
 }
 table th {
-    font-size: 0.9rem;
+  font-size: 0.9rem;
   font-weight: 600;
   padding: 0 0.75rem 0.75rem 0.75rem;
   text-align: left;
@@ -920,7 +920,7 @@ table tbody tr:nth-child(2n + 1) {
 }
 table th {
   color: #555555;
-  
+
   text-align: center;
 }
 table thead {
@@ -3710,7 +3710,7 @@ body:before {
 #menu {
   background-color: #111111;
   color: rgba(255, 255, 255, 0.5);
-  -moz-transform: translateX(20rem);
+  /* -moz-transform: translateX(20rem);
   -webkit-transform: translateX(20rem);
   -ms-transform: translateX(20rem);
   transform: translateX(20rem);
@@ -3720,7 +3720,7 @@ body:before {
     visibility 0.5s;
   -ms-transition: -ms-transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
   transition: transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; */
   box-shadow: none;
   height: 100%;
   max-width: 80%;
@@ -3729,7 +3729,7 @@ body:before {
   position: fixed;
   right: 0;
   top: 0;
-  visibility: hidden;
+  /* visibility: hidden; */
   width: 20rem;
   z-index: 10002;
 }

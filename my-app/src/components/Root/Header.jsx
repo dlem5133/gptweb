@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ switchNav }) => {
   return (
     <header id="header">
       <Link to="/" className="logo">
         BNK-AI-LAB
       </Link>
-      <nav>
-        <a href="#menu">Menu</a>
-      </nav>
+      <nav onClick={switchNav}>Menu</nav>
     </header>
   );
 };

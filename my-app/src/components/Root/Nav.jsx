@@ -1,18 +1,42 @@
-const Nav = () => {
+import { useRef } from "react";
+import { Link } from "react-router-dom";
+
+const styleOverlay = {
+  position: "fixed",
+  left: 0,
+  top: 0,
+  width: "100vw",
+  height: "100vh",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  zIndex: "50",
+};
+
+const Nav = ({ switchNav }) => {
+  const overlay = useRef(null);
   return (
-    <nav id="menu">
-      <ul className="links">
-        <li>
-          <a href="index.html">Home</a>
-        </li>
-        <li>
-          <a href="elements.html">Elements</a>
-        </li>
-        <li>
-          <a href="generic.html">Generic</a>
-        </li>
-      </ul>
-    </nav>
+    <div
+      style={styleOverlay}
+      ref={overlay}
+      onClick={(event) => {
+        if (event.target == overlay.current) {
+          switchNav();
+        }
+      }}
+    >
+      <nav id="menu">
+        <ul class="links">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/">Elements</Link>
+          </li>
+          <li>
+            <Link to="/">Generic</Link>
+          </li>
+        </ul>
+      </nav>
+    </div>
   );
 };
 export default Nav;
