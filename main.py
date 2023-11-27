@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-import mysql.connector
+import pymysql
 
 from pydantic import BaseModel
 app = FastAPI()
@@ -15,11 +15,13 @@ app.add_middleware(
 )
 
 # MySQL 연결 설정
-db = mysql.connector.connect(
+db = pymysql.connect(
     host="localhost",
     user="root",
-    password="root", 
-    database="bulletin_board"
+    password="root",
+    database="bulletin_board",
+    charset="utf8mb4",
+    cursorclass=pymysql.cursors.DictCursor
 )
 cursor = db.cursor()
 
@@ -29,18 +31,12 @@ cursor = db.cursor()
 async def get_posts():
     cursor.execute("SELECT * FROM posts")
     posts = cursor.fetchall()
-    posts_list = []
-    for post in posts:
-        post_dict = {
-            'id': post[0],
-            'title': post[1],
-            'content': post[2]
-        }
-        posts_list.append(post_dict)
-    return posts_list
+    return posts
+
 class Post(BaseModel):
     title: str
     content: str
+    
 # 게시글 작성 API
 @app.post('/posts')
 async def create_post(post: Post):
@@ -58,7 +54,6 @@ async def update_post(post_id: int, title: str, content: str):
 # 게시글 삭제 API
 @app.delete('/posts/{post_id}')
 async def delete_post(post_id: int):
-    cursor.execute("DELETE FROM posts WHERE id = %s", (post_id,))
+    cursor.execute("DELETE FROM posts WHERE post_id = %s", (post_id,))
     db.commit()
-    ret = get_posts()
     return {'message': '게시글이 삭제되었습니다.'}
