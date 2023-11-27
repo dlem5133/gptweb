@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
+import { editNews } from "./apis";
 
-const EditPosts = ({ post, closeModal, fetchPosts }) => {
+const EditPosts = ({ post, closeModal }) => {
   const [title, setTitle] = useState(post.title);
   const [content, setContent] = useState(post.content);
 
@@ -13,30 +14,17 @@ const EditPosts = ({ post, closeModal, fetchPosts }) => {
     };
     const post_id = post.post_id;
 
-    axios
-      .put(`http://localhost:8000/posts/${post_id}`, editData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        setTitle("");
-        setContent("");
-        console.log(response);
-      })
-      .then(() => {
-        fetchPosts();
-      })
-      .catch((error) => {
-        console.error("게시글 수정 요청 실패:", error);
-      });
+    editNews(post_id, editData).then(() => {
+      setTitle("");
+      setContent("");
+      closeModal();
+    });
   };
 
   return (
     <form
       onSubmit={(event) => {
         handleSubmit(event);
-        closeModal();
       }}
     >
       <input

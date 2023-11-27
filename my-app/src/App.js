@@ -1,9 +1,15 @@
 import { useState } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import Main from "./components/Main";
+import Root from "./pages/Root";
 import Modal from "./components/Modal";
 
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import HighlightDetail from "./pages/HighlightDetail";
+
 function App() {
+  // Modal
   const [isModal, setModal] = useState(false);
   const [isModalData, setModalData] = useState(null);
 
@@ -17,9 +23,28 @@ function App() {
     setModal(false);
   };
 
+  //react-router
+  const router = createBrowserRouter([
+    {
+      path: "",
+      element: <Root />,
+      errorElement: <NotFound />,
+      children: [
+        {
+          path: "/",
+          element: <Home openModal={openModal} closeModal={closeModal} />,
+        },
+        {
+          path: "/highlight/:id",
+          element: <HighlightDetail />,
+        },
+      ],
+    },
+  ]);
+
   return (
     <>
-      <Main openModal={openModal} closeModal={closeModal} />
+      <RouterProvider router={router} />
       {isModal ? (
         <Modal
           data={isModalData}

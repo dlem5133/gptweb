@@ -1,41 +1,28 @@
-import axios from "axios";
 import { useState } from "react";
+import { postNews } from "./apis";
 
-const PostPosts = ({ closeModal, fetchPosts }) => {
+const PostPosts = ({ closeModal }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const postData = {
       title: title,
       content: content,
     };
-    axios
-      .post("http://localhost:8000/posts", postData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        setTitle("");
-        setContent("");
-        console.log(response);
-      })
-      .then(() => {
-        fetchPosts();
-      })
-      .catch((error) => {
-        console.error("게시글 생성 요청 실패:", error);
-        // 요청 실패 시 에러 처리
-      });
+
+    postNews(postData).then(() => {
+      setTitle("");
+      setContent("");
+      closeModal();
+    });
   };
 
   return (
     <form
       onSubmit={(event) => {
         handleSubmit(event);
-        closeModal();
       }}
     >
       <input

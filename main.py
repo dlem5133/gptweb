@@ -44,10 +44,11 @@ async def create_post(post: Post):
     db.commit()
     return {'message': '게시글이 작성되었습니다.'}
 
-# 게시글 수정 API
+
+    
 @app.put('/posts/{post_id}')
-async def update_post(post_id: int, title: str, content: str):
-    cursor.execute("UPDATE posts SET title = %s, content = %s WHERE id = %s", (title, content, post_id))
+async def update_post(post_id: int, post: Post):
+    cursor.execute("UPDATE posts SET title = %s, content = %s WHERE post_id = %s", (post.title, post.content, post_id))
     db.commit()
     return {'message': '게시글이 업데이트되었습니다.'}
 

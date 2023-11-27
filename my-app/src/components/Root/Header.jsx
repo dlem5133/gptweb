@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <header id="header">
-      <a className="logo" href="index.html">
+      <Link to="/" className="logo">
         BNK-AI-LAB
-      </a>
+      </Link>
       <nav>
         <a href="#menu">Menu</a>
       </nav>

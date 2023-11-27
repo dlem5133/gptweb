@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import PostPosts from "./PostPosts";
 import EditPosts from "./EditPosts";
+import { deleteNews, getNews } from "./apis";
 
 const News = ({ openModal, closeModal }) => {
   const [posts, setPosts] = useState([]);
@@ -10,29 +10,15 @@ const News = ({ openModal, closeModal }) => {
     fetchPosts();
   }, []);
 
-  //API 요청
-
+  // 게시글 불러오기
   const fetchPosts = async () => {
-    const response = await axios.get("http://localhost:8000/posts");
+    const response = await getNews();
     setPosts(response.data);
   };
 
   // 게시글 삭제
-  const deletePost = (postId) => {
-    axios
-      .delete(`http://localhost:8000/posts/${postId}`)
-      .then((response) => {
-        // 성공적으로 삭제된 후에 새로운 게시글 목록을 가져옵니다.
-
-        console.log(response);
-      })
-      .then(() => {
-        fetchPosts();
-      })
-      .catch((error) => {
-        console.error("게시글 삭제 요청 실패:", error);
-        // 요청 실패 시 에러 처리
-      });
+  const deletePost = (post_id) => {
+    deleteNews(post_id).then(fetchPosts());
   };
 
   return (
@@ -105,11 +91,7 @@ const News = ({ openModal, closeModal }) => {
                           className="button small"
                           onClick={() =>
                             openModal(
-                              <EditPosts
-                                post={post}
-                                closeModal={closeModal}
-                                fetchPosts={fetchPosts}
-                              />
+                              <EditPosts post={post} closeModal={closeModal} />
                             )
                           }
                         >
