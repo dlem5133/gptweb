@@ -1,20 +1,18 @@
-import axios from "axios";
 import { useState } from "react";
-import { editNews } from "./apis";
+import { postNews } from "./apis";
 
-const EditPosts = ({ post, closeModal }) => {
-  const [title, setTitle] = useState(post.title);
-  const [content, setContent] = useState(post.content);
+const PostPosts = ({ closeModal }) => {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const editData = {
+    const postData = {
       title: title,
       content: content,
     };
-    const post_id = post.post_id;
 
-    editNews(post_id, editData).then(() => {
+    postNews(postData).then(() => {
       setTitle("");
       setContent("");
       closeModal();
@@ -38,12 +36,12 @@ const EditPosts = ({ post, closeModal }) => {
       <textarea
         placeholder="내용"
         value={content}
-        onInput={(e) => (e.target.value)}
+        onInput={(e) => setContent(e.target.value)}
       ></textarea>
-      <button type="submit">게시글 수정</button>
+      <button type="submit">게시글 작성</button>
       <button onClick={closeModal}>닫기</button>
     </form>
   );
 };
 
-export default EditPosts;
+export default PostPosts;

@@ -7,7 +7,8 @@ import Modal from "./components/Modal";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import HighlightDetail from "./pages/HighlightDetail";
-
+import HighlightDetail2 from "./pages/HighlightDetail2";
+import News from "./components/Home/News/index";
 function App() {
   // Modal
   const [isModal, setModal] = useState(false);
@@ -37,6 +38,14 @@ function App() {
         {
           path: "/highlight/:id",
           element: <HighlightDetail />,
+        },
+        {
+          path: "/detail",
+          element: <HighlightDetail2 />,
+        },
+        {
+          path: "/news",
+          element: <News />,
         },
       ],
     },

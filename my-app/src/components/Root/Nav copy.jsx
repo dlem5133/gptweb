@@ -26,13 +26,13 @@ const Nav = ({ switchNav }) => {
       <nav id="menu">
         <ul class="links">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/highlight/1">Home</Link>
           </li>
           <li>
-            <Link to="/detail">chatGPT</Link>
+            <Link to="/">Elements</Link>
           </li>
           <li>
-            <Link to="/news">News</Link>
+            <Link to="/">Generic</Link>
           </li>
         </ul>
       </nav>

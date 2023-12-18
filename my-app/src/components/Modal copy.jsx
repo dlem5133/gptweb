@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 
 const styleOverlay = {
   position: "fixed",
@@ -11,7 +10,21 @@ const styleOverlay = {
   zIndex: "50",
 };
 
-const Nav = ({ switchNav }) => {
+const styleContents = {
+  position: "fixed",
+  width: "50%",
+  height: "50%",
+  left: "25%",
+  top: "25%",
+  backgroundColor: "white",
+  margin: "auto",
+  border: "1px solid #ccc",
+  borderRadius: "5px",
+  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
+  padding: "20px",
+};
+
+const Modal = ({ data, fnCloseModal }) => {
   const overlay = useRef(null);
   return (
     <div
@@ -19,24 +32,12 @@ const Nav = ({ switchNav }) => {
       ref={overlay}
       onClick={(event) => {
         if (event.target == overlay.current) {
-          switchNav();
+          fnCloseModal();
         }
       }}
     >
-      <nav id="menu">
-        <ul class="links">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/detail">chatGPT</Link>
-          </li>
-          <li>
-            <Link to="/news">News</Link>
-          </li>
-        </ul>
-      </nav>
+      <div style={styleContents}>{data}</div>
     </div>
   );
 };
-export default Nav;
+export default Modal;

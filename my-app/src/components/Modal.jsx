@@ -12,16 +12,16 @@ const styleOverlay = {
 
 const styleContents = {
   position: "fixed",
-  width: "50%",
-  height: "50%",
+  width: "700px",
+  height: "auto",
   left: "25%",
   top: "25%",
   backgroundColor: "white",
   margin: "auto",
   border: "1px solid #ccc",
-  borderRadius: "5px",
-  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5)",
-  padding: "20px",
+  borderRadius: "15px",
+  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+  padding: "24px",
 };
 
 const Modal = ({ data, fnCloseModal }) => {
