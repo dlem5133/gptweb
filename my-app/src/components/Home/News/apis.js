@@ -49,7 +49,7 @@ export const deleteNews = async (post_id) => {
       return response;
     })
     .catch((error) => {
-      console.error("게시글 삭제 요청 실패:", error);
+      console.error(post_id + ": 게시글 삭제 요청 실패:", error);
       // 요청 실패 시 에러 처리
     });
 };
