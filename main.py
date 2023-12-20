@@ -79,7 +79,7 @@ def read_comment():
 
 @app.put("/comments/{comment_id}")
 def update_comment(comment_id: int, content: str):
-    sql = "UPDATE comments SET content = %s WHERE id = %s"
+    sql = "UPDATE comment SET content = %s WHERE id = %s"
     values = (content, comment_id)
     cursor.execute(sql, values)
     db.commit()
@@ -87,7 +87,7 @@ def update_comment(comment_id: int, content: str):
 
 @app.delete("/comments/{comment_id}")
 def delete_comment(comment_id: int):
-    sql = "DELETE FROM comments WHERE id = %s"
+    sql = "DELETE FROM comment WHERE id = %s"
     cursor.execute(sql, comment_id)
     db.commit()
     return {"message": "Comment deleted successfully"}

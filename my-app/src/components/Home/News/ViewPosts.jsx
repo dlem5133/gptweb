@@ -75,14 +75,14 @@ const ViewPosts = ({ closeModal }) => {
               <li className="ai-file_item">
                 <div className="ai-file_link ai-flexwrap">
                   <div className="ai-flex">
-                    <div className="ai-file_icon">아이콘</div>
+                    <div className="ai-ico clp">아이콘</div>
                     <div className="ai-file_info ai-flex">
                         <span className="">파일명</span>
                         <span className="ai-file_extension">.pdf</span>
                     </div>
                   </div>                  
                   <div>
-                    <div className="ai-file_down">저장</div>
+                    <div className="ai-ico down">저장</div>
                   </div>
                 </div>
               </li>

@@ -5,12 +5,13 @@ const HighlightDetail = () => {
   const [comments, setComments] = useState([]);
 
   const [showComments, setShowComments] = useState(false);
-
+// 중괄호 안, ? 뒤가 대댓글 구역
+// <p>{comment.content}</p> 댓글구역
   const Comment = ({ comment }) => {
   return (
     <div className="ai-comment">
-      {comment.parent_comment_id ? <span>&rarr;</span> : null}
-      <p>{comment.content}</p>
+      {comment.parent_comment_id ? <span>&rarr;</span> : null} 
+      <p>{comment.content}</p> 
     </div>
   );
 };

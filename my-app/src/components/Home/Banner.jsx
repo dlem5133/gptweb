@@ -17,6 +17,7 @@ const Banner = () => {
   return (
     <section id="banner">
       <div className="inner"></div>
+      <div className="ai-downarr"></div>
       <video ref={videoRef} src="images/banner.mp4"></video>
     </section>
   );

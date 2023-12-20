@@ -24,7 +24,7 @@ const News = ({ openModal, closeModal }) => {
   return (
     <section className="wrapper">
       <div className="inner text-center">
-        <h2 style={{ textAlign: "center" }}>AI News</h2>
+        <h2 className="ai-tit_h2">AI News</h2>
 
         {/* CTA */}
 
@@ -37,9 +37,9 @@ const News = ({ openModal, closeModal }) => {
                 style={{ textAlign: "center" }}
               >
                 <caption className="text-center">
-                  최신 AI 기술이 반영된 세미나 자료를 소개하는 게시판입니다
+                  최신 기술이 반영된 세미나 자료를 소개하는 AI뉴스 게시판 입니다.
                 </caption>
-                <caption style={{ textAlign: "right" }}>
+                <caption style={{ textAlign: "right", margin: "10px 0"}}>
                   <div className="modal">
                     <button
                       onClick={() =>
@@ -50,27 +50,28 @@ const News = ({ openModal, closeModal }) => {
                           />
                         )
                       }
-                      className="button small"
+                      className="ai-btn_regist"
                     >
                       작성
                     </button>
                   </div>
                 </caption>
-                <thead style={{ textAlign: "center" }}>
+                <thead className="ai-thead bord-no">
                   <tr>
-                    <th>번호</th>
-                    <th style={{ width: "60%" }}>제목</th>
+                    <th style={{ padding: "17px 15px" }}>번호</th>
+                    <th style={{ width: "50%" }}>제목</th>
                     <th>등록자</th>
                     <th>등록일</th>
                     <th>조회수</th>
+                    <th>-</th>
                   </tr>
                 </thead>
                 <tbody>
                   {posts.map((post) => (
-                    <tr key={post.post_id}>
+                    <tr className="ai-tr bord-no" key={post.post_id}>
                       <td>{post.post_id}</td>
                       <td
-                        style={{ cursor: "pointer" }}
+                        className="ai-td_tit"
                         onClick={() =>
                           openModal(
                             <div>
@@ -85,10 +86,11 @@ const News = ({ openModal, closeModal }) => {
                       </td>
 
                       <td>41,803,125</td>
-                      <td>31.3</td>
+                      <td>23.12.18</td>
+                      <td>123</td>
                       <td>
                         <button
-                          className="button small"
+                          className="ai-btn_edit"
                           onClick={() =>
                             openModal(
                               <EditPosts post={post} closeModal={closeModal} />
@@ -98,7 +100,7 @@ const News = ({ openModal, closeModal }) => {
                           수정
                         </button>
                         <button
-                          className="button small"
+                          className="ai-btn_delete"
                           onClick={() => {
                             deletePost(post.post_id);
                           }}
@@ -111,7 +113,7 @@ const News = ({ openModal, closeModal }) => {
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colSpan="5" className="text-center">
+                    <td colSpan="6" className="text-center">
                       Data retrieved from{" "}
                       <a
                         href="http://www.infoplease.com/ipa/A0855611.html"
