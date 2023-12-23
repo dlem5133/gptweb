@@ -5,13 +5,85 @@ const HighlightDetail = () => {
   const [comments, setComments] = useState([]);
 
   const [showComments, setShowComments] = useState(false);
+
+  let [inputCount, setInputCount] = useState(0);
+  const onInputHandler = (e) => {
+    setInputCount(e.target.value.length);
+  }; 
 // 중괄호 안, ? 뒤가 대댓글 구역
 // <p>{comment.content}</p> 댓글구역
   const Comment = ({ comment }) => {
   return (
     <div className="ai-comment">
-      {comment.parent_comment_id ? <span>&rarr;</span> : null} 
-      <p>{comment.content}</p> 
+      <div className='ai-com_wrap'>
+        <div className='user_wrap mgb10'>
+        <div
+            id="likeButton"
+            className="likesButton"
+            //onClick={increaseLikes}
+          >
+          </div>
+          <div className="ai-flex mgb10">
+            <div className="ai-ico user"></div>
+            <div id="likeCount"></div>
+            <div>
+              <div className='user_name'>익명</div>
+              <div className='date'>2days ago</div>
+            </div>
+          </div>
+          <p className='ai-content3'>{comment.content}</p>
+          <div className="ai-btnwrap" style={{ justifyContent: "right" }}>
+                <button className="ai-btn none">답글</button>
+                <button className="ai-btn none">수정</button>
+          </div>
+        </div>
+      </div> 
+
+      <div className='ai-recom_wrap'>
+        <div className='user_wrap mgb10'>
+        <div
+            id="likeButton"
+            className="likesButton"
+            //onClick={increaseLikes}
+          >
+          </div>
+          <div className="ai-flex mgb10">
+            <div className='recom_arr'></div>
+            <div className="ai-ico user"></div>
+            <div id="likeCount"></div>
+            <div>
+              <div className='user_name'>익명</div>
+              <div className='date'>2days ago</div>
+            </div>
+          </div>
+          <p className='ai-content3'>{comment.parent_comment_id ? <></>: null}</p>
+          <div className="ai-btnwrap" style={{ justifyContent: "right" }}>
+            <button className="ai-btn none">답글</button>
+            <button className="ai-btn none">수정</button>
+          </div>
+        </div>
+      </div>
+      <div className='ai-input_wrap'>
+        <div className="ai-flex">
+          <textarea className='ai-input_content'
+            placeholder="입력해주세요"
+          />
+          <div className="txt_right">
+            <button className="ai-btn_close none2"></button>
+          </div>
+        </div>
+        <div className='ai-flex' style={{ justifyContent: "space-between" }}>
+          <div onChange={onInputHandler} maxLength={2000}>
+            <p>
+              <span>{inputCount}</span>
+              /<span>{2000}</span>
+            </p>
+          </div>
+          <div className="ai-btnwrap" style={{ justifyContent: "right" }}>
+            <button className="ai-btn none">등록</button>
+          </div>    
+        </div>
+      </div>        
     </div>
   );
 };
@@ -63,15 +135,16 @@ const toggleComments = () => {
                   있다고 소개했다.</div>
                 </div>
                 <div className="ai-btnwrap2 ai-flexwrap mgt20">
-                  <button type="submit" className="ai-btn_like">
-                    좋아요
-                    <p className="ai-like_ico"></p>
-                    <p className="ai-like_count"></p>
+                  <button type="submit" className="ai-flex ai-btn_like">
+                    <div className="ai-ico like_1" style={{ margin: "0px 10px 0 13px" }}></div>
+                    <div id="likeCount">12</div>
                   </button>
-                  <button type="submit" className="ai-btn_regist2" onClick={toggleComments}>
-                    댓글
-                    <p className="ai-com_ico"></p>
-                    <p className="ai-com_count"></p>
+                  <button type="submit" className="ai-flex ai-btn_regist2 pd16" onClick={toggleComments}>
+                    <div className='ai-flex'>
+                      <div className="ai-ico like_3 w" style={{ margin: "2px" }}></div>
+                      <div>댓글</div>
+                      <div id="likeCount">12</div>
+                    </div>
                   </button>
                 </div>
                 {showComments && (

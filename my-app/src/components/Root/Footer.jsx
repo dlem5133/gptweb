@@ -5,59 +5,26 @@ const Footer = () => {
         <div className="inner">
           <div className="content">
             <section>
-              <h3>Accumsan montes viverra</h3>
-              <p>
-                Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida
-                odio porttitor sem non mi integer non faucibus ornare mi ut ante
-                amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem
-                accumsan varius montes viverra nibh in adipiscing. Lorem ipsum
-                dolor vestibulum ante ipsum primis in faucibus vestibulum.
-                Blandit adipiscing eu felis iaculis volutpat ac adipiscing sed
-                feugiat eu faucibus. Integer ac sed amet praesent. Nunc lacinia
-                ante nunc ac gravida.
-              </p>
+              <h3>Contact</h3>
             </section>
             <section>
-              <h4>Sem turpis amet semper</h4>
+              <div>디지털금융개발부 대리 <strong>주귀복</strong></div>
               <ul className="alt">
                 <li>
-                  <a href="#">Dolor pulvinar sed etiam.</a>
-                </li>
-                <li>
-                  <a href="#">Etiam vel lorem sed amet.</a>
-                </li>
-                <li>
-                  <a href="#">Felis enim feugiat viverra.</a>
-                </li>
-                <li>
-                  <a href="#">Dolor pulvinar magna etiam.</a>
+                  <a href="#">4515</a>
                 </li>
               </ul>
             </section>
             <section>
-              <h4>Magna sed ipsum</h4>
-              <ul className="plain">
+              <div>BNK시스템 파트너 <strong>김수현</strong></div>
+              <ul className="alt">
                 <li>
-                  <a href="#">
-                    <i className="icon fa-twitter">&nbsp;</i>Twitter
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="icon fa-facebook">&nbsp;</i>Facebook
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="icon fa-instagram">&nbsp;</i>Instagram
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="icon fa-github">&nbsp;</i>Github
-                  </a>
+                  <a href="#">4515</a>
                 </li>
               </ul>
+            </section>
+            <section>
+              <div>부산 남구 문현금융단지30 부산은행본점 9층 디지털금융개발부</div>
             </section>
           </div>
         </div>

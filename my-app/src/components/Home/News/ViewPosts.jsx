@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { postNews } from "./apis";
 
-const ViewPosts = ({ closeModal }) => {
+const ViewPosts = ({ openModal, closeModal }) => {
   const [title, setTitle] = useState("");
   const [registrant, setRegistrant] = useState("");
   const [attachment, setAttachment] = useState("");
@@ -23,7 +23,7 @@ const ViewPosts = ({ closeModal }) => {
       setAttachment("");
       closeModal();
     });
-  };
+  };  
 
   return (
     <form
@@ -75,14 +75,14 @@ const ViewPosts = ({ closeModal }) => {
               <li className="ai-file_item">
                 <div className="ai-file_link ai-flexwrap">
                   <div className="ai-flex">
-                    <div className="ai-ico clp">아이콘</div>
+                    <div className="ai-ico clp"></div>
                     <div className="ai-file_info ai-flex">
                         <span className="">파일명</span>
                         <span className="ai-file_extension">.pdf</span>
                     </div>
                   </div>                  
                   <div>
-                    <div className="ai-ico down">저장</div>
+                    <div className="ai-ico down"></div>
                   </div>
                 </div>
               </li>
@@ -91,7 +91,9 @@ const ViewPosts = ({ closeModal }) => {
         </div>
       </table>
       <div className="ai-btnwrap mt-9">
-        <button type="submit" className="ai-btn_regist" onClick={closeModal}>등록</button>
+        <button type="submit" className="ai-btn regists" onClick={closeModal}>등록</button>
+        <button className="ai-btn edits">수정</button>
+        <button className="ai-btn deletes">삭제</button>
       </div>
     </form>
   );

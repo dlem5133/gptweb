@@ -23,7 +23,7 @@ const Nav = ({ switchNav }) => {
         }
       }}
     >
-      <nav id="menu">
+      <nav id="menu" style={{ fontWeight: "bold" }}>
         <ul class="links">
           <li>
             <Link to="/highlight/1">Home</Link>

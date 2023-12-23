@@ -82,7 +82,6 @@ const HighlightList = () => {
           <h2 className="ai-tit_h2" style={{ fontWeight: "bold" }}>AI Tech</h2>
           <p>BNK 사내 신기술 사례를 소개하는 공간입니다</p>
         </header>
-
         <div className="highlights">
           {dataobjs.map((dataobj, objIndex) => (
             <section key={objIndex}>
@@ -91,10 +90,12 @@ const HighlightList = () => {
                   <img className="image" src={dataobj.imgSrc} href="#"></img>
                 </header>
                 <div className="innerText">
-                  <h3 className="ai-tit2" style={{ fontSize: " 26px " }}>{dataobj.headline}</h3>
-                  <p className="ai-content2">{dataobj.script}</p>
-                  <p className="ai-content2" style={{ color: " #888 " }}>{dataobj.date}</p>
-                  <div className="">
+                  <h3 className="ai-tit2" style={{ fontSize: " 22px ", margin: " 0 0 10px "}}>{dataobj.headline}</h3>
+                    <p className="hl-content cont">{dataobj.script}</p>
+                    <div className="ai-flex">
+                      <p className="hl-content time">{dataobj.date}</p>
+                    </div>
+                  <div className="ai-flex">
                     <button
                       id="likeButton"
                       className="likesButton"
@@ -174,6 +175,7 @@ const HighlightList = () => {
           </section> */}
         </div>
       </div>
+      <div className="ai-downarr g"></div>
     </section>
   );
 };

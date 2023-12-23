@@ -27,21 +27,71 @@ const EditPosts = ({ post, closeModal }) => {
         handleSubmit(event);
       }}
     >
-      <input
-        type="text"
-        placeholder="제목"
-        value={title}
-        onInput={(e) => {
-          setTitle(e.target.value);
-        }}
-      />
-      <textarea
-        placeholder="내용"
-        value={content}
-        onInput={(e) => (e.target.value)}
-      ></textarea>
-      <button type="submit">게시글 수정</button>
-      <button onClick={closeModal}>닫기</button>
+      <div className="ai-tit ai-flexwrap">
+        <div>게시판 수정</div>
+        <div className="txt_right">
+          <button className="ai-btn_close"></button>
+        </div>
+      </div>
+      <table>
+        <div className="ai-row">
+          <tr className="ai-col_1 ai-col">
+            <th className="ai-td ai-fgr2">제목</th>
+            <th>
+              <input
+                type="text"
+                placeholder="제목"
+                value={title}
+                onInput={(e) => {
+                  setTitle(e.target.value);
+                }}
+              />
+            </th>
+          </tr>
+          <tr className="ai-col_1">
+            <th className="ai-td ai-fgr2">등록자</th>
+            <th>
+              <input
+                type="text"
+                placeholder="제목"
+                value={title}
+                onInput={(e) => {
+                  setTitle(e.target.value);
+                }}
+              />
+            </th>
+          </tr>
+          <tr className="ai-col_1">
+            <th className="ai-td ai-fgr2">첨부파일</th>
+            <th className="ai-flex w80">
+              <input
+                type="text"
+                placeholder="제목"
+                value={title}
+                onInput={(e) => {
+                  setTitle(e.target.value);
+                }}
+              />
+              <div className="ai-btnwrap">
+                <button className="ai-btn_att">첨부파일</button>
+              </div>
+            </th>
+          </tr>
+          <tr className="ai-col_1">
+            <th className="ai-td ai-fgr2">내용</th>
+            <th>
+            <textarea
+              placeholder="내용"
+              value={content}
+              onInput={(e) => setContent(e.target.value)}
+            ></textarea>
+            </th>
+          </tr>
+        </div>
+      </table>
+      <div className="ai-btnwrap mt-9">
+        <button type="submit" className="ai-btn regists" onClick={closeModal}>등록</button>
+      </div>
     </form>
   );
 };

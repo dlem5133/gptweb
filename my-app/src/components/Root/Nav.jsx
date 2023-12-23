@@ -23,6 +23,8 @@ const Nav = ({ switchNav }) => {
       }}
     >
       <nav id="menu">
+      {/* 화이트 버전 코드 - menu 2
+      <nav id="menu" className="menu-w"> */}
         <ul class="links">
           <li>
             <Link to="/">Home</Link>
