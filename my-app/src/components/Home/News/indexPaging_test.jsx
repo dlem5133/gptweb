@@ -1,124 +1,47 @@
-import React, { useState, useEffect } from "react";
-import PostPosts from "./PostPosts";
-import EditPosts from "./EditPosts";
-import ViewPosts from "./ViewPosts";
-import { deleteNews, getNews } from "./apis";
-
-const News = ({ openModal, closeModal }) => {
-  const [posts, setPosts] = useState([]);
+const Pagination = ({ totalPage, limit, page, setPage }) => {
+  // 총 페이지 갯수에 따라 Pagination 갯수 정하기, limit 단위로 페이지 리스트 넘기기
+  const [currentPageArray, setCurrentPageArray] = useState([]);
+  const [totalPageArray, setTotalPageArray] = useState([]);
 
   useEffect(() => {
-    fetchPosts();
-  }, []);
+    if (page % limit === 1) {
+      setCurrentPageArray(totalPageArray[Math.floor(page / limit)]);
+    } else if (page % limit === 0) {
+      setCurrentPageArray(totalPageArray[Math.floor(page / limit) - 1]);
+    }
+  }, [page]);
 
-  // 게시글 불러오기
-  const fetchPosts = async () => {
-    const response = await getNews();
-    setPosts(response.data);
-  };
-
-  // 게시글 삭제
-  const deletePost = (post_id) => {
-    deleteNews(post_id).then(fetchPosts());
-  };
+  useEffect(() => {
+    const slicedPageArray = sliceArrayByLimit(totalPage, limit);
+    setTotalPageArray(slicedPageArray);
+    setCurrentPageArray(slicedPageArray[0]);
+  }, [totalPage]);
 
   return (
-    <section className="wrapper">
-      <div className="inner text-center">
-        <h2 className="ai-tit_h2">AI News</h2>
-
-        {/* CTA */}
-
-        <div className="tb1 container" style={{ height: "50rem" }}>
-          <div className="inner">
-            <div className="col-xs-12">
-              <table
-                summary="This table shows how to create responsive tables using Datatables' extended functionality"
-                className="table table-bordered table-hover dt-responsive"
-                style={{ textAlign: "center" }}
-              >
-                <caption className="text-center">
-                  최신 기술이 반영된 세미나 자료를 소개하는 AI뉴스 게시판 입니다.
-                </caption>
-                <caption style={{ textAlign: "right", margin: "10px 0"}}>
-                  <div className="modal">
-                    <button
-                      onClick={() =>
-                        openModal(
-                          <PostPosts
-                            closeModal={closeModal}
-                            fetchPosts={fetchPosts}
-                          />
-                        )
-                      }
-                      className="ai-btn_regist"
-                    >
-                      작성
-                    </button>
-                  </div>
-                </caption>
-                <thead className="ai-thead bord-no">
-                  <tr>
-                    <th style={{ padding: "17px 15px" }}>번호</th>
-                    <th style={{ width: "50%" }}>제목</th>
-                    <th>등록자</th>
-                    <th>등록일</th>
-                    <th>조회수</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {posts.map((post) => (
-                    <tr className="ai-tr bord-no" key={post.post_id}>
-                      <td>{post.post_id}</td>
-                      <td
-                        className="ai-td_tit"
-                        onClick={() =>
-                          openModal(
-                            <div>
-                              <h2>{post.title}</h2>
-                              <p>{post.content}</p>
-                              <button onClick={closeModal}>닫기</button>
-                            </div>
-                          )
-                        }
-                      >
-                        {post.title}
-                      </td>
-
-                      <td>41,803,125</td>
-                      <td>23.12.18</td>
-                      <td>123</td>
-                    </tr>
-                  ))}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colSpan="5" className="text-center">
-                      Data retrieved from{" "}
-                      <a
-                        href="http://www.infoplease.com/ipa/A0855611.html"
-                        target="_blank"
-                      >
-                        infoplease
-                      </a>{" "}
-                      and{" "}
-                      <a
-                        href="http://www.worldometers.info/world-population/population-by-country/"
-                        target="_blank"
-                      >
-                        worldometers
-                      </a>
-                      .
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-        </div>
-        <p className="p">Demo by 디지털금융개발부</p>
-      </div>
-    </section>
+    <PaginationWrapper>
+      <FaAngleDoubleLeft onClick={() => setPage(1)} disabled={page === 1} />
+      <FaAngleLeft onClick={() => setPage(page - 1)} disabled={page === 1} />
+      <ButtonWrapper>
+        {currentPageArray?.map((i) => (
+          <PageButton
+            key={i + 1}
+            onClick={() => setPage(i + 1)}
+            aria-current={page === i + 1 ? 'page' : null}
+          >
+            {i + 1}
+          </PageButton>
+        ))}
+      </ButtonWrapper>
+      <FaAngleRight
+        onClick={() => setPage(page + 1)}
+        disabled={page === totalPage}
+      />
+      <FaAngleDoubleRight
+        onClick={() => setPage(totalPage)}
+        disabled={page === totalPage}
+      />
+    </PaginationWrapper>
   );
 };
-export default News;
+
+export default Pagination;
