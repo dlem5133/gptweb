@@ -1,6 +1,11 @@
 import { Component } from "react";
-
+import { useNavigate  } from 'react-router-dom';
 const HighlightList = () => {
+  const navigate = useNavigate();
+
+  const handleClick = (link) => {
+    navigate(link);
+  };
   const dataobjs = [
     {
       imgSrc: "images/ai1.jpg",
@@ -15,6 +20,7 @@ const HighlightList = () => {
       likes: 0,
       sub: 0,
       reply: 0,
+      link: "/detail",
     },
     {
       imgSrc: "images/ai2.jpg",
@@ -24,6 +30,7 @@ const HighlightList = () => {
       likes: 0,
       sub: 0,
       reply: 0,
+      link: "/detail",
     },
     {
       imgSrc: "images/ai3.webp",
@@ -37,6 +44,7 @@ const HighlightList = () => {
       likes: 0,
       sub: 0,
       reply: 0,
+      link: "/detail",
     },
     {
       imgSrc: "images/ai1.jpg",
@@ -51,6 +59,7 @@ const HighlightList = () => {
       likes: 0,
       sub: 0,
       reply: 0,
+      link: "/detail",
     },
     {
       imgSrc: "images/ai2.jpg",
@@ -60,6 +69,7 @@ const HighlightList = () => {
       likes: 0,
       sub: 0,
       reply: 0,
+      link: "/detail",
     },
     {
       imgSrc: "images/ai3.webp",
@@ -73,6 +83,7 @@ const HighlightList = () => {
       likes: 0,
       sub: 0,
       reply: 0,
+      link: "/detail",
     },
   ];
   return (
@@ -85,9 +96,9 @@ const HighlightList = () => {
         <div className="highlights">
           {dataobjs.map((dataobj, objIndex) => (
             <section key={objIndex}>
-              <div className="content">
+              <div className="content" onClick={() => handleClick(dataobj.link)}>
                 <header>
-                  <img className="image" src={dataobj.imgSrc} href="#"></img>
+                  <img className="image" src={dataobj.imgSrc} ></img>
                 </header>
                 <div className="innerText">
                   <h3 className="ai-tit2" style={{ fontSize: " 22px ", margin: " 0 0 10px "}}>{dataobj.headline}</h3>

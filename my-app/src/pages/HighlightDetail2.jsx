@@ -7,6 +7,13 @@ const HighlightDetail = () => {
   const [showComments, setShowComments] = useState(false);
 
   let [inputCount, setInputCount] = useState(0);
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditing(true); // 수정 버튼을 클릭하면 isEditing 값을 true로 변경합니다.
+  };
+
   const onInputHandler = (e) => {
     setInputCount(e.target.value.length);
   }; 
@@ -33,9 +40,11 @@ const HighlightDetail = () => {
           </div>
           <p className='ai-content3'>{comment.content}</p>
           <div className="ai-btnwrap" style={{ justifyContent: "right" }}>
-                <button className="ai-btn none">답글</button>
-                <button className="ai-btn none">수정</button>
-          </div>
+        <button className="ai-btn none">답글</button>
+        <button className="ai-btn none" onClick={handleEditClick}>
+          수정
+        </button>
+      </div>
         </div>
       </div> 
 

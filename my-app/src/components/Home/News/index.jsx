@@ -74,11 +74,12 @@ const News = ({ openModal, closeModal }) => {
                         className="ai-td_tit"
                         onClick={() =>
                           openModal(
-                            <div>
-                              <h2>{post.title}</h2>
-                              <p>{post.content}</p>
-                              <button onClick={closeModal}>닫기</button>
-                            </div>
+                            // <div>
+                            //   <h2>{post.title}</h2>
+                            //   <p>{post.content}</p>
+                            //   <button onClick={closeModal}>닫기</button>
+                            // </div>
+                            <ViewPosts closeModal={closeModal} post={post}></ViewPosts>
                           )
                         }
                       >

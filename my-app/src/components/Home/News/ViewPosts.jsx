@@ -1,29 +1,34 @@
 import { useState } from "react";
-import { postNews } from "./apis";
+import { getNews,deleteNews } from "./apis";
 
-const ViewPosts = ({ openModal, closeModal }) => {
+const ViewPosts = ({ openModal, closeModal, post }) => {
   const [title, setTitle] = useState("");
   const [registrant, setRegistrant] = useState("");
   const [attachment, setAttachment] = useState("");
   const [content, setContent] = useState("");
-
+  const [posts, setPosts] = useState([]);
+  const postData = {
+    id: post.id,
+    title: post.title,
+    content: post.content
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
-    const postData = {
-      title: title,
-      content: content,
-      registrant: registrant,
-      attachment: attachment,
-    };
-
-    postNews(postData).then(() => {
-      setTitle("");
-      setRegistrant("");
-      setContent("");
-      setAttachment("");
-      closeModal();
-    });
+    
+    closeModal();
+    // postNews(postData).then(() => {
+    //   setTitle("");
+    //   setRegistrant("");
+    //   setContent("");
+    //   setAttachment("");
+    //   closeModal();
+    // });
   };  
+
+  // 게시글 삭제
+  const deletePost = (post_id1) => {
+    deleteNews(post_id1);
+  };
 
   return (
     <form
@@ -43,12 +48,12 @@ const ViewPosts = ({ openModal, closeModal }) => {
             <div
             className="ai-title ai-tit_text"
             readOnly
-            type="text"
-            value={title}
-            onInput={(e) => {
-              setTitle(e.target.value);
-            }}
-            >OPEN AI 생성형 AI 세미나 자료</div>
+            // type="text"
+            // value={title}
+            // onInput={(e) => {
+            //   setTitle(e.target.value);
+            // }}
+            >{post.title}</div>
           </tr>
           <tr className="ai-col_2">
             <div className="date">등록일 2023-10-11</div>
@@ -56,19 +61,8 @@ const ViewPosts = ({ openModal, closeModal }) => {
             readOnly
             className="ai-content"
             radioGroup=""
-            value={content}
             onInput={(e) => (e.target.value)}
-            >생성 인공지능(AI)이 '콘텐츠 조정자(moderator)'라는 새로운 직군을
-            만들어 내고 있다. '프롬포트 엔지니어'에 이어 등장한 이 직업은 생성
-            AI의 출력만을 전문적으로 검토하는 역할이다. 월스트리스저널과
-            CNBC는 최근 생성 AI의 등장으로 실직 위협이 늘어나는 가운데 반면
-            AI가 생성한 텍스트나 이미지의 적합성을 검토하는 일자리도 늘어나고
-            있다고 소개했다.<br/><br/>생성 인공지능(AI)이 '콘텐츠 조정자(moderator)'라는 새로운 직군을
-            만들어 내고 있다. '프롬포트 엔지니어'에 이어 등장한 이 직업은 생성
-            AI의 출력만을 전문적으로 검토하는 역할이다. 월스트리스저널과
-            CNBC는 최근 생성 AI의 등장으로 실직 위협이 늘어나는 가운데 반면
-            AI가 생성한 텍스트나 이미지의 적합성을 검토하는 일자리도 늘어나고
-            있다고 소개했다.</div>
+            >{post.content}</div>
           </tr>
           <div className="ai-file_attachments_inner">
             <ul className="ai-file_list">
@@ -91,9 +85,9 @@ const ViewPosts = ({ openModal, closeModal }) => {
         </div>
       </table>
       <div className="ai-btnwrap mt-9">
-        <button type="submit" className="ai-btn regists" onClick={closeModal}>등록</button>
+        {/* <button type="submit" className="ai-btn regists" onClick={closeModal}>등록</button> */}
         <button className="ai-btn edits">수정</button>
-        <button className="ai-btn deletes">삭제</button>
+        <button className="ai-btn deletes" onClick={() => deletePost(post.post_id)}>삭제</button>
       </div>
     </form>
   );

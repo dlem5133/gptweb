@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import HighlightDetail from "./pages/HighlightDetail";
 import HighlightDetail2 from "./pages/HighlightDetail2";
-import News from "./components/Home/News/index";
+import NewsDetail from "./pages/NewsDetail";
 function App() {
   // Modal
   const [isModal, setModal] = useState(false);
@@ -45,7 +45,7 @@ function App() {
         },
         {
           path: "/news",
-          element: <News />,
+          element: <NewsDetail openModal={openModal} closeModal={closeModal}/>,
         },
       ],
     },

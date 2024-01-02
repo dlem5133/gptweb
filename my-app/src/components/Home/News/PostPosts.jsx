@@ -11,7 +11,7 @@ const PostPosts = ({ closeModal }) => {
       title: title,
       content: content,
     };
-
+    console.log(postData)
     postNews(postData).then(() => {
       setTitle("");
       setContent("");
@@ -28,11 +28,11 @@ const PostPosts = ({ closeModal }) => {
       <div className="ai-tit ai-flexwrap">
         <div>게시판 작성</div>
         <div className="txt_right">
-          <button className="ai-btn_close"></button>
+          <button className="ai-btn_close" onClick={closeModal}></button>
         </div>
       </div>
       <table>
-        <div className="ai-row">
+        <tbody>
           <tr className="ai-col_1 ai-col">
             <th className="ai-td ai-fgr2">제목</th>
             <th>
@@ -85,10 +85,10 @@ const PostPosts = ({ closeModal }) => {
             ></textarea>
             </th>
           </tr>
-        </div>
+        </tbody>
       </table>
       <div className="ai-btnwrap mt-9">
-        <button type="submit" className="ai-btn regists" onClick={closeModal}>등록</button>
+        <button type="submit" className="ai-btn regists">등록</button>
       </div>
     </form>
   );
