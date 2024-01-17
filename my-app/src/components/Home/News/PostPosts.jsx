@@ -38,11 +38,11 @@ const PostPosts = ({ closeModal }) => {
             <th>
               <input
                 type="text"
-                placeholder="제목"
                 value={title}
                 onInput={(e) => {
                   setTitle(e.target.value);
                 }}
+                className="ai-input-f"
               />
             </th>
           </tr>
@@ -51,11 +51,11 @@ const PostPosts = ({ closeModal }) => {
             <th>
               <input
                 type="text"
-                placeholder="제목"
                 value={title}
                 onInput={(e) => {
                   setTitle(e.target.value);
                 }}
+                className="ai-input-f"
               />
             </th>
           </tr>
@@ -64,11 +64,11 @@ const PostPosts = ({ closeModal }) => {
             <th className="ai-flex w80">
               <input
                 type="text"
-                placeholder="제목"
                 value={title}
                 onInput={(e) => {
                   setTitle(e.target.value);
                 }}
+                className="ai-input-f"
               />
               <div className="ai-btnwrap">
                 <button className="ai-btn_att">첨부파일</button>
@@ -79,9 +79,9 @@ const PostPosts = ({ closeModal }) => {
             <th className="ai-td ai-fgr2">내용</th>
             <th>
             <textarea
-              placeholder="내용"
               value={content}
               onInput={(e) => setContent(e.target.value)}
+              className="ai-input-f"
             ></textarea>
             </th>
           </tr>

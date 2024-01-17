@@ -6,10 +6,11 @@ const Header = ({ switchNav }) => {
   // 현재 경로 확인
   const currentPath = location.pathname;
   const navbarClass1 = currentPath === '/' ? 'header-b' : 'header-w';
-  const navbarClass2 = currentPath === '/' ? 'ai-header' : 'ai-header-w';
+  const navbarClass2 = currentPath === '/' ? 'ai-header-b' : 'ai-header-w';
+  const navbarClass3 = currentPath === '/' ? 'ai-ico arr_1-b' : 'ai-ico arr_1-w';
 
   return (
-    <header className={navbarClass1}>
+    <header id="header" className={navbarClass1}>
     {/* 화이트 버전 코드 - header
     <header id="header" className="header-w"> */}
       <div className="ai-inner">
@@ -19,7 +20,7 @@ const Header = ({ switchNav }) => {
         <div className="ai-header-w"> */}
         <div className="ai-flex">
           <nav className="hov-b" onClick={switchNav}>AI Tech</nav>
-          <div className="ai-ico arr_1"></div>
+          <div className={navbarClass3}></div>
         </div>
         <Link className="ai-flex" to="/news"><nav>AI News</nav></Link>
         <nav>Contact</nav>

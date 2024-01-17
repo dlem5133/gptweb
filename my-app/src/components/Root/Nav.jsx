@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
+import { useLocation,Link } from "react-router-dom";
 
 const styleOverlay = {
   position: "fixed",
@@ -12,6 +12,11 @@ const styleOverlay = {
 
 const Nav = ({ switchNav }) => {
   const overlay = useRef(null);
+  const location = useLocation();
+
+  // 현재 경로 확인
+  const currentPath = location.pathname;
+  const navClass1 = currentPath === '/' ? 'menu menu-b' : 'menu menu-w';
   return (
     <div
       style={styleOverlay}
@@ -22,7 +27,7 @@ const Nav = ({ switchNav }) => {
         }
       }}
     >
-      <nav id="menu">
+      <nav id="menu" className={navClass1}>
       {/* 화이트 버전 코드 - menu 2
       <nav id="menu" className="menu-w"> */}
         <ul class="links">

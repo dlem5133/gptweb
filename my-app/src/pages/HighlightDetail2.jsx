@@ -121,7 +121,7 @@ const toggleComments = () => {
       <section id="wrapper">
         <div className="inner ai-innerwrap">
           <div className="ai-inline">
-            <div className="ai-flex pdt50">
+            <div className="ai-flex pdt50" style={{ minHeight: "50rem" }}>
               <div className="ai-fgr1 ai-lab_container">
                 <div className="ai-lab_img" src="images/ai1.jpg">
                   이미지영역

@@ -95,17 +95,19 @@ const HighlightList = () => {
         </header>
         <div className="highlights">
           {dataobjs.map((dataobj, objIndex) => (
-            <section key={objIndex}>
+            <section key={objIndex} className="cen">
               <div className="content" onClick={() => handleClick(dataobj.link)}>
                 <header>
                   <img className="image" src={dataobj.imgSrc} ></img>
                 </header>
                 <div className="innerText">
-                  <h3 className="ai-tit2" style={{ fontSize: " 22px ", margin: " 0 0 10px "}}>{dataobj.headline}</h3>
+                  <div className="">
+                    <h3 className="ai-tit2" style={{ fontSize: " 19px ", margin: " 0 0 6px "}}>{dataobj.headline}</h3>
                     <p className="hl-content cont">{dataobj.script}</p>
                     <div className="ai-flex">
                       <p className="hl-content time">{dataobj.date}</p>
                     </div>
+                  </div>                
                   <div className="ai-flex">
                     <button
                       id="likeButton"
@@ -138,7 +140,7 @@ const HighlightList = () => {
                       </div>
                     </button>
                   </div>
-                </div>
+                </div>   
               </div>
             </section>
           ))}
