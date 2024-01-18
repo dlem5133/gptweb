@@ -190,9 +190,12 @@ const [isEditing, setIsEditing] = useState(false);
           <div className="ai-inline">
             <div className="ai-flex pdt50" style={{ minHeight: "50rem" }}>
               <div className="ai-fgr1 ai-lab_container">
-                <div className="ai-lab_img" src="images/ai1.jpg">
-                  이미지영역
-                </div>
+              <iframe
+                title="ExternalPage"
+                src="http://localhost:8000/docs"
+                width="100%"
+                height="100%"
+              ></iframe>
               </div>
 
               <div className="ai-fgr2">
