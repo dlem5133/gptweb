@@ -14,7 +14,7 @@ const styleContents = {
   position: "fixed",
   width: "700px",
   height: "auto",
-  left: "25%",
+  left: "32%",
   top: "25%",
   backgroundColor: "white",
   margin: "auto",

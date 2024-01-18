@@ -46,7 +46,7 @@ const News = ({ openModal, closeModal }) => {
 
         {/* CTA */}
 
-        <div className="tb1 container" style={{ height: "50rem" }}>
+        <div className="tb1 container" style={{ height: "35rem" }}>
           <div className="inner">
             <div className="col-xs-12">
               <table
