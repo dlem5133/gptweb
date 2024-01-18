@@ -3,13 +3,19 @@ import PostPosts from "./PostPosts";
 import EditPosts from "./EditPosts";
 import ViewPosts from "./ViewPosts";
 import { deleteNews, getNews } from "./apis";
+import Pagination from "./Pagination";
 
 const News = ({ openModal, closeModal }) => {
   const [posts, setPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5); // 페이지 당 아이템 수 설정
+
+
+
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [currentPage]);
 
   // 게시글 불러오기
   const fetchPosts = async () => {
@@ -21,6 +27,17 @@ const News = ({ openModal, closeModal }) => {
   const deletePost = (post_id) => {
     deleteNews(post_id).then(fetchPosts());
   };
+
+  // 현재 페이지의 게시물 데이터
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentPosts = posts.slice(indexOfFirstItem, indexOfLastItem);
+
+  // 페이지 번호 변경
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
 
   return (
     <section className="wrapper">
@@ -67,7 +84,7 @@ const News = ({ openModal, closeModal }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {posts.map((post) => (
+                  {currentPosts.map((post) => (
                     <tr className="ai-tr bord-no" key={post.post_id}>
                       <td>{post.post_id}</td>
                       <td
@@ -95,21 +112,11 @@ const News = ({ openModal, closeModal }) => {
                 <tfoot>
                   <tr>
                     <td colSpan="5" className="text-center">
-                      Data retrieved from{" "}
-                      <a
-                        href="http://www.infoplease.com/ipa/A0855611.html"
-                        target="_blank"
-                      >
-                        infoplease
-                      </a>{" "}
-                      and{" "}
-                      <a
-                        href="http://www.worldometers.info/world-population/population-by-country/"
-                        target="_blank"
-                      >
-                        worldometers
-                      </a>
-                      .
+                    <Pagination
+                      itemsPerPage={itemsPerPage}
+                      totalItems={posts.length}
+                      paginate={paginate}
+                    />
                     </td>
                   </tr>
                 </tfoot>
@@ -117,6 +124,7 @@ const News = ({ openModal, closeModal }) => {
             </div>
           </div>
         </div>
+        
         <p className="p">Demo by 디지털금융개발부</p>
       </div>
     </section>

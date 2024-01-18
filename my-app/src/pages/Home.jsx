@@ -21,7 +21,7 @@ const Home = ({ openModal, closeModal }) => {
     <div id="fullpage">
       <div className="section"><Banner /></div>
       <div className="section"><HighlightList /></div>
-      <div className="section"><News openModal={openModal} closeModal={closeModal} /></div>
+      <div className="section"><News openModal={openModal} closeModal={closeModal} /></div >
       <div className="section"><Footer /></div>
     </div>
   );

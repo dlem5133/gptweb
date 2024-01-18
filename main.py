@@ -59,11 +59,18 @@ async def delete_post(post_id: int):
     db.commit()
     return {'message': '게시글이 삭제되었습니다.'}
 
+class Comment(BaseModel):
+    user_id: int
+    post_id: int
+    content: str
+    parent_comment_id: int
+    
 # 댓글 CRUD API
 @app.post("/comments/")
-def create_comment(user_id: int, post_id: int, content: str, parent_comment_id: int = None):
+def create_comment(comment: Comment):
+    print(comment)
     sql = "INSERT INTO Comment (user_id, post_id, content, parent_comment_id) VALUES (%s, %s, %s, %s)"
-    values = (user_id, post_id, content, parent_comment_id)
+    values = (comment.user_id, comment.post_id, comment.content, comment.parent_comment_id)
     cursor.execute(sql, values) 
     db.commit()
     return {"message": "Comment created successfully"}

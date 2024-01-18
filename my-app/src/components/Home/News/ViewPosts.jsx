@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './Pagination.css';
 import { getNews,deleteNews } from "./apis";
 
 const ViewPosts = ({ openModal, closeModal, post }) => {
