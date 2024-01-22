@@ -427,7 +427,7 @@ hr {
 /* Inner */
 .inner {
   margin: 0 auto;
-  width: 76rem;
+  width: 80rem;
   max-width: calc(100% - 6rem);
 }
 @media screen and (max-width: 480px) {
@@ -4428,7 +4428,7 @@ p {
 
 /*HightlightDetail*/
 .ai-lab_container {
-  height: 500px;
+  height: 805px;
   width: auto;
   object-fit: fill;
   align-self: flex-start;
@@ -4564,7 +4564,7 @@ p {
 .ai-inner {
   display: flex;
   margin: 0 auto;
-  width: 75rem;
+  width: 80rem;
   max-width: calc(100% - 6rem);
   justify-content: space-between;
   align-items: center;
