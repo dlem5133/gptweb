@@ -11,6 +11,7 @@ const Header = ({ switchNav }) => {
 
   return (
     <header id="header" className={navbarClass1}>
+    <div className="ai-topbtn">Top</div>
     {/* 화이트 버전 코드 - header
     <header id="header" className="header-w"> */}
       <div className="ai-inner">

@@ -31,7 +31,6 @@ const Footer = () => {
       </footer>
 
       <div id="copyright " className="copyright">
-        Design by <a href="https://templated.co/">TEMPLATED</a>.
       </div>
     </>
   );

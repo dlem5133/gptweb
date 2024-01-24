@@ -47,7 +47,7 @@ const News = ({ openModal, closeModal }) => {
         {/* CTA */}
 
         <div className="tb1 container" style={{ height: "35rem" }}>
-          <div className="inner">
+          <div className="inner" style={{ width: "58.5rem" }}>
             <div className="col-xs-12">
               <table
                 summary="This table shows how to create responsive tables using Datatables' extended functionality"
@@ -113,6 +113,7 @@ const News = ({ openModal, closeModal }) => {
                   <tr>
                     <td colSpan="5" className="text-center">
                     <Pagination
+                      className="ai-paging"
                       itemsPerPage={itemsPerPage}
                       totalItems={posts.length}
                       paginate={paginate}

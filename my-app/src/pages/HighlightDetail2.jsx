@@ -185,12 +185,13 @@ const [isEditing, setIsEditing] = useState(false);
   };
   return (
     <>
-      <section id="wrapper">
+      <section id="wrapper" className='ai-bf4 p-60'>
         <div className="inner ai-innerwrap">
           <div className="ai-inline">
             <div className="ai-flex pdt50" style={{ minHeight: "50rem" }}>
               <div className="ai-fgr1 ai-lab_container">
               <iframe
+                className='ai-ext'
                 title="ExternalPage"
                 src="http://localhost:8000/docs"
                 width="100%"
@@ -201,14 +202,14 @@ const [isEditing, setIsEditing] = useState(false);
               <div className="ai-fgr2">
                 <div className="ai-conten2">
                   <div className="ai-tit2 txt_left">Chat GPT</div>
-                  <div>생성 인공지능(AI)이 '콘텐츠 조정자(moderator)'라는 새로운 직군을
+                  <div className='in-cont'>생성 인공지능(AI)이 '콘텐츠 조정자(moderator)'라는 새로운 직군을
                   만들어 내고 있다. '프롬포트 엔지니어'에 이어 등장한 이 직업은 생성
                   AI의 출력만을 전문적으로 검토하는 역할이다. 월스트리스저널과
                   CNBC는 최근 생성 AI의 등장으로 실직 위협이 늘어나는 가운데 반면
                   AI가 생성한 텍스트나 이미지의 적합성을 검토하는 일자리도 늘어나고
                   있다고 소개했다.</div>
                 </div>
-                <div className="ai-btnwrap2 ai-flexwrap mgt20">
+                <div className="ai-btnwrap2 ai-flexwrap">
                   <button type="submit" className="ai-flex ai-btn_like">
                     <div className="ai-ico like_1" style={{ margin: "0px 10px 0 13px" }}></div>
                     <div id="likeCount">12</div>
@@ -222,14 +223,17 @@ const [isEditing, setIsEditing] = useState(false);
                   </button>
                 </div>
                 {showComments && (
-                <div className="ai-comment-list">
-                  {/* 댓글 목록을 표시하는 부분 */}
-                  {comments.map((comment, index) => (
-                    <Comment key={index} comment={comment} />
-                  ))}
+                <div className='ai-cwrap1'>
+                  <div className="ai-comment-list">
+                    {/* 댓글 목록을 표시하는 부분 */}
+                    {comments.map((comment, index) => (
+                      <Comment key={index} comment={comment} />
+                    ))}
+                  </div>
                 </div>
                 )}
                 {
+                <div className='ai-cwrap2'>
                   <div className='ai-input_wrap'>
                   <div className="ai-flex">
                     <textarea className='ai-input_content'
@@ -250,7 +254,8 @@ const [isEditing, setIsEditing] = useState(false);
                       <button className="ai-btn none" onClick={handleSave}>등록</button>
                     </div>    
                   </div>
-                </div>  
+                  </div>
+                </div>    
                 }
               </div> 
               

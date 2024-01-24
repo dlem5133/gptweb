@@ -88,7 +88,7 @@ const HighlightList = () => {
   ];
   return (
     <section className="wrapper">
-      <div className="inner">
+      <div className="inner" style={{ width: " 63rem " }}>
         <header className="special">
           <h2 className="ai-tit_h2" style={{ fontWeight: "bold" }}>AI Tech</h2>
           <p>BNK 사내 신기술 사례를 소개하는 공간입니다</p>

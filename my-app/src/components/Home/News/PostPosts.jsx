@@ -34,7 +34,7 @@ const PostPosts = ({ closeModal }) => {
       <table>
         <tbody>
           <tr className="ai-col_1 ai-col">
-            <th className="ai-td ai-fgr2">제목</th>
+            <th className="ai-td ai-fgr">제목</th>
             <th>
               <input
                 type="text"
@@ -47,7 +47,7 @@ const PostPosts = ({ closeModal }) => {
             </th>
           </tr>
           <tr className="ai-col_1">
-            <th className="ai-td ai-fgr2">등록자</th>
+            <th className="ai-td ai-fgr">등록자</th>
             <th>
               <input
                 type="text"
@@ -60,7 +60,7 @@ const PostPosts = ({ closeModal }) => {
             </th>
           </tr>
           <tr className="ai-col_1">
-            <th className="ai-td ai-fgr2">첨부파일</th>
+            <th className="ai-td ai-fgr">첨부파일</th>
             <th className="ai-flex w80">
               <input
                 type="text"
@@ -76,7 +76,7 @@ const PostPosts = ({ closeModal }) => {
             </th>
           </tr>
           <tr className="ai-col_1">
-            <th className="ai-td ai-fgr2">내용</th>
+            <th className="ai-td ai-fgr3">내용</th>
             <th>
             <textarea
               value={content}
